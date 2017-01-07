@@ -34,7 +34,8 @@ SimpleCorpus(x, control = list(language = "en"))
     \item{no custom readers, i.e., each document is read in and stored as plain
       text (as a string, i.e., a character vector of length one),}
     \item{transformations applied via \code{\link{tm_map}} must be able to
-      process strings and return strings,}
+      process character vectors and return character vectors (of the same
+      length),}
     \item{no lazy transformations in \code{\link{tm_map}},}
     \item{no meta data for individual documents (i.e., no \code{"local"} in
       \code{\link{meta}}).}
