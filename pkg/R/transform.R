@@ -21,6 +21,9 @@ function(x, FUN, ..., lazy = FALSE)
 tm_map.SimpleCorpus <-
 function(x, FUN, ...)
 {
+    if (inherits(FUN, "content_transformer"))
+        FUN <- get("FUN", envir = environment(FUN))
+
     x$content <- FUN(content(x), ...)
     x
 }
@@ -64,10 +67,14 @@ function()
 
 content_transformer <-
 function(FUN)
-    function(x, ...) {
+{
+    f <- function(x, ...) {
         content(x) <- FUN(content(x), ...)
         x
     }
+    class(f) <- c("content_transformer", "function")
+    f
+}
 
 removeNumbers <-
 function(x)
