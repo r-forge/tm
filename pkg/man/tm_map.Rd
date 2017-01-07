@@ -15,11 +15,11 @@
 }
 \arguments{
   \item{x}{A corpus.}
-  \item{FUN}{a transformation function taking a text document (a string when
-    \code{x} is a \code{SimpleCorpus}) as input and returning a text
-    document (a string for \code{SimpleCorpus}. The function
-    \code{\link{content_transformer}} can be used to create a wrapper to get
-    and set the content of text documents.}
+  \item{FUN}{a transformation function taking a text document (a character
+    vector when \code{x} is a \code{SimpleCorpus}) as input and returning a text
+    document (a character vector of the same length as the input vector for
+    \code{SimpleCorpus}). The function \code{\link{content_transformer}} can be
+    used to create a wrapper to get and set the content of text documents.}
   \item{\dots}{arguments to \code{FUN}.}
   \item{lazy}{a logical. Lazy mappings are mappings which are delayed
     until the content is accessed. It is useful for large corpora if only few
