@@ -94,14 +94,16 @@ function(x, control = list())
 
     ## Ensure local bounds
     bl <- control$bounds$local
-    min_term_freq <- if (length(bl) == 2L && is.numeric(bl)) bl[1] else 0L
-    max_term_freq <- if (length(bl) == 2L && is.numeric(bl))
-        min(bl[2], .Machine$integer.max) else .Machine$integer.max
+    min_term_freq <-
+        if (length(bl) == 2L && is.numeric(bl) && bl[1] >= 0) bl[1] else 0L
+    max_term_freq <-
+        if (length(bl) == 2L && is.numeric(bl) && bl[2] >= 0)
+            min(bl[2], .Machine$integer.max) else .Machine$integer.max
 
     ## Filter out too short or too long terms
     wl <- control$wordLengths
-    min_word_length <- if (is.numeric(wl[1])) wl[1] else 3L
-    max_word_length <- if (is.numeric(wl[2]))
+    min_word_length <- if (is.numeric(wl[1]) && wl[1] >= 0) wl[1] else 3L
+    max_word_length <- if (is.numeric(wl[2]) && wl[2] >= 0)
         min(wl[2], .Machine$integer.max) else .Machine$integer.max
 
     m <- tdm(txt,
