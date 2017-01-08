@@ -59,7 +59,7 @@ function(x, control = list(language = "en"))
         warning("custom reader is ignored")
 
     content <- if (inherits(x, "VectorSource"))
-        x$content
+        as.character(x$content)
     else if (inherits(x, "DirSource")) {
         setNames(as.character(
                    lapply(x$filelist,
