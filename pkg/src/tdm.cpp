@@ -10,18 +10,18 @@ List tdm(const StringVector strings,
          const bool remove_digits,
          const std::vector<std::string> stopwords,
          const std::vector<std::string> dictionary,
-         const int min_term_freq,
-         const int max_term_freq,
-         const int min_word_length,
-         const int max_word_length) {
-    int column = 1;
-    std::map<std::string, int> line, terms_pos;
+         const unsigned int min_term_freq,
+         const unsigned int max_term_freq,
+         const unsigned int min_word_length,
+         const unsigned int max_word_length) {
+    unsigned int column = 1;
+    std::map<std::string, unsigned int> line, terms_pos;
     std::set<std::string> dict(dictionary.begin(), dictionary.end()),
         sw(stopwords.begin(), stopwords.end());
-    std::vector<int> i, j, v;
+    std::vector<unsigned int> i, j, v;
     std::vector<std::string> terms;
 
-    for (int index = 0; index < strings.size(); index++) {
+    for (unsigned int index = 0; index < strings.size(); index++) {
         boost::tokenizer<> tok(strings(index));
 
         line.clear();
@@ -40,11 +40,11 @@ List tdm(const StringVector strings,
                 line[token]++;
         }
 
-        for (std::map<std::string, int>::iterator it = line.begin();
+        for (std::map<std::string, unsigned int>::iterator it = line.begin();
              it != line.end();
              ++it) {
             std::string term = it->first;
-            int freq = it->second;
+            unsigned int freq = it->second;
 
             if (min_term_freq <= freq && freq <= max_term_freq) {
                 if (!terms_pos.count(term)) {
