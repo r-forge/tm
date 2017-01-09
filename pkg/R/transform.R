@@ -11,7 +11,7 @@ function(x, FUN, ..., lazy = FALSE)
     if (lazy) {
         fun <- function(x) FUN(x, ...)
         if (is.null(x$lazy))
-            x$lazy <- list(index = rep(TRUE, length(x)), maps = list(fun))
+            x$lazy <- list(index = rep_len(TRUE, length(x)), maps = list(fun))
         else
             x$lazy$maps <- c(x$lazy$maps, list(fun))
     } else

@@ -33,7 +33,7 @@ function(x, dictionary,
                    lapply(possibleCompletions,
                           function(x) sort(table(x), decreasing = TRUE))
                n <- names(sapply(possibleCompletions, "[", 1))
-               setNames(if (length(n)) n else rep(NA, length(x)), x)
+               setNames(if (length(n)) n else rep_len(NA, length(x)), x)
            },
            random = {
                setNames(sapply(possibleCompletions, function(x) {
