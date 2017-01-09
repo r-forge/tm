@@ -58,9 +58,9 @@ function(x, control = list(language = "en"))
     if (!is.null(control$reader) && !identical(control$reader, readPlain))
         warning("custom reader is ignored")
 
-    content <- if (inherits(x, "VectorSource"))
-        as.character(x$content)
-    else if (inherits(x, "DirSource")) {
+    content <- if (inherits(x, "VectorSource")) {
+        if (is.character(x$content)) x$content else as.character(x$content)
+    } else if (inherits(x, "DirSource")) {
         setNames(as.character(
                    lapply(x$filelist,
                           function(f) paste(readContent(f, x$encoding, "text"),
