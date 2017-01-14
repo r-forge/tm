@@ -94,9 +94,13 @@ S3method("stemDocument", "character")
 S3method("stripWhitespace", "character")
 S3method("words", "character")
 
+S3method("[", "DataframeSource")
+S3method("[[", "DataframeSource")
 S3method("getElem", "DataframeSource")
 S3method("pGetElem", "DataframeSource")
 
+S3method("[", "DirSource")
+S3method("[[", "DirSource")
 S3method("getElem", "DirSource")
 S3method("pGetElem", "DirSource")
 
@@ -190,6 +194,8 @@ S3method("inspect", "TextDocument")
 
 S3method("print", "TextDocumentMeta")
 
+S3method("[", "URISource")
+S3method("[[", "URISource")
 S3method("getElem", "URISource")
 S3method("pGetElem", "URISource")
 
@@ -213,6 +219,8 @@ S3method("tm_filter", "VCorpus")
 S3method("tm_index", "VCorpus")
 S3method("tm_map", "VCorpus")
 
+S3method("[", "VectorSource")
+S3method("[[", "VectorSource")
 S3method("getElem", "VectorSource")
 S3method("pGetElem", "VectorSource")
 
