@@ -3,7 +3,7 @@ importFrom("NLP", "content", "content<-", "meta", "meta<-", "words",
            "TaggedTextDocument")
 importFrom("Rcpp", "evalCpp")
 importFrom("graphics", "abline", "plot")
-importFrom("parallel", "mclapply")
+importFrom("parallel", "parLapply")
 importFrom("stats", "coef", "cor", "lm", "setNames")
 importFrom("utils", "download.file", "getS3method", "unzip")
 
@@ -71,6 +71,8 @@ export("as.DocumentTermMatrix",
        "tm_filter",
        "tm_index",
        "tm_map",
+       "tm_parLapply",
+       "tm_parLapply_engine",
        "tm_reduce",
        "tm_term_score",
        "URISource",
