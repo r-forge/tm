@@ -43,11 +43,11 @@ tm_parLapply_engine(new)
 
   Hence, to achieve parallelization via
   \code{\link[parallel:parLapply]{parLapply}()}
-  and a default clustered registered via
+  and a default cluster registered via
   \code{\link[parallel:setDefaultCluster]{setDefaultCluster}()}, one
   can use \preformatted{  tm_parLapply_engine(function(X, FUN, ...)
       parallel::parLapply(NULL, X, FUN, ...))}
-  or re-register the cluster, say \code{cl}, using \preformatted{  tm_parLapply_engine(cl)} 
+  or re-register the cluster, say \code{cl}, using \preformatted{  tm_parLapply_engine(cl)}
   (note that there is no mechanism for programmatically getting the
   registered default cluster).  Using \preformatted{  tm_parLapply_engine(function(X, FUN, ...)
       parallel::parLapplyLB(NULL, X, FUN, ...))}
@@ -69,6 +69,6 @@ tm_parLapply_engine(new)
 \seealso{
   \code{\link[parallel:makeCluster]{makeCluster}()},
   \code{\link[parallel:parLapply]{parLapply}()},
-  \code{\link[parallel:parLapplyLB]{parLapplyLB}()},
+  \code{\link[parallel:parLapplyLB]{parLapplyLB}()}, and
   \code{\link[parallel:mclapply]{mclapply}()}.
 }
