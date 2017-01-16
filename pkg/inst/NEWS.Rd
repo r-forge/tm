@@ -22,6 +22,12 @@
         \code{writeLines(as.character())}.
       \item \code{findMostFreqTerms()} finds most frequent terms in a
         document-term or term-document matrix, or a vector of term frequencies.
+      \item \code{tm_parLapply()} is now internally used for the parallelization
+        of transformations, filters, and term-document matrix construction. The
+        preferred parallelization engine can be registered via
+        \code{tm_parLapply_engine()}. The default is to use no parallelization
+        (instead of \code{\link[parallel]{mclapply}} (package \pkg{parallel}) in
+        previous versions).
     }
   }
 }
