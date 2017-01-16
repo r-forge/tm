@@ -25,7 +25,7 @@ timings <-
             sprintf("PSOCKcluster(%d)/directly", nc),
             list(system.time(DocumentTermMatrix(C))))
 parallel::setDefaultCluster(cl)
-tm_parLapply_engine(function(X, FUN, ...) 
+tm_parLapply_engine(function(X, FUN, ...)
                         parallel::parLapply(NULL, X, FUN, ...))
 timings <-
     replace(timings,
