@@ -161,7 +161,7 @@ function(x, i)
 {
     i <- .map_name_index(x, i)
     if (!is.null(x$lazy))
-        .Call(copyCorpus, x, materialize(x, i))
+        .Call(tm_copyCorpus, x, materialize(x, i))
     x$content[[i]]
 }
 
@@ -243,7 +243,7 @@ content.VCorpus <-
 function(x)
 {
     if (!is.null(x$lazy))
-        .Call(copyCorpus, x, materialize(x))
+        .Call(tm_copyCorpus, x, materialize(x))
     x$content
 }
 

@@ -2,6 +2,6 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 tdm <- function(strings, remove_digits, stopwords, dictionary, min_term_freq, max_term_freq, min_word_length, max_word_length) {
-    .Call('tm_tdm', PACKAGE = 'tm', strings, remove_digits, stopwords, dictionary, min_term_freq, max_term_freq, min_word_length, max_word_length)
+    .Call(tm_tdm, strings, remove_digits, stopwords, dictionary, min_term_freq, max_term_freq, min_word_length, max_word_length)
 }
 

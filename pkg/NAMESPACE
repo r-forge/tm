@@ -1,3 +1,5 @@
+useDynLib("tm", .registration = TRUE)
+
 importFrom("NLP", "content", "content<-", "meta", "meta<-", "words",
            "as.Token_Tokenizer", "is.Span_Tokenizer", "Token_Tokenizer",
            "TaggedTextDocument")
@@ -260,5 +262,3 @@ S3method("nDocs", "DocumentTermMatrix")
 S3method("nDocs", "TermDocumentMatrix")
 S3method("nTerms", "DocumentTermMatrix")
 S3method("nTerms", "TermDocumentMatrix")
-
-useDynLib(tm, copyCorpus)
