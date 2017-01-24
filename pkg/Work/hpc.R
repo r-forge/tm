@@ -1,5 +1,5 @@
 ## Adjust as necessary:
-dir <- "~/tmp/tm.d"
+dir <- "Data"
 
 nd <- 3e4
 nc <- 4
