@@ -22,7 +22,7 @@ List tdm(const StringVector strings,
     std::vector<std::string> terms;
 
     for (unsigned int index = 0; index < strings.size(); index++) {
-        boost::tokenizer<> tok(strings(index));
+        boost::tokenizer<> tok(Rcpp::as<std::string>(strings(index)));
 
         line.clear();
         for (boost::tokenizer<>::iterator it = tok.begin();
