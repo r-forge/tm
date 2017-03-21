@@ -1,6 +1,15 @@
 \name{NEWS}
 \title{News for Package 'tm'}
 \encoding{UTF-8}
+\section{Changes in tm version 0.7-2}{
+  \subsection{BUG FIXES}{
+    \itemize{
+      \item Correctly handle the \code{dictionary} argument when constructing a
+        term-document matrix from a \code{SimpleCorpus}.
+        Reported by Joe Corrigan.
+    }
+  }
+}
 \section{Changes in tm version 0.7-1}{
   \subsection{BUG FIXES}{
     \itemize{
