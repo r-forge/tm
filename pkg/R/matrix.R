@@ -112,8 +112,7 @@ function(x, control = list())
              as.integer(min_term_freq), as.integer(max_term_freq),
              as.integer(min_word_length), as.integer(max_word_length))
 
-    terms <- if (is.null(control$dictionary)) m$terms else control$dictionary
-    m <- .SimpleTripletMatrix(m$i, m$j, m$v, terms, x)
+    m <- .SimpleTripletMatrix(m$i, m$j, m$v, m$terms, x)
 
     ## Stemming
     ## <NOTE>
