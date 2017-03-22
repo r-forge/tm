@@ -126,7 +126,8 @@ function(x, control = list())
     ## local bounds and word lengths.
     ## </NOTE>
     if (isTRUE(control$stemming)) {
-        stems <- as.factor(SnowballC::wordStem(terms, meta(x, "language")))
+        stems <- as.factor(SnowballC::wordStem(m$dimnames$Terms,
+                                               meta(x, "language")))
         m <- rollup(m, "Terms", stems)
 
         ## Recheck local bounds
