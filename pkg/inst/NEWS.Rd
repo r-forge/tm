@@ -5,8 +5,8 @@
   \subsection{BUG FIXES}{
     \itemize{
       \item Correctly handle the \code{dictionary} argument when constructing a
-        term-document matrix from a \code{SimpleCorpus}.
-        Reported by Joe Corrigan.
+        term-document matrix from a \code{SimpleCorpus} (reported by Joe
+        Corrigan) or from a \code{VCorpus} (reported by Mark Rosenstein).
     }
   }
 }
