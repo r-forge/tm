@@ -25,10 +25,10 @@ test_that("construction with control arguments works", {
   scorpus <- Corpus(vs)
   vcorpus <- VCorpus(vs)
   docs <- "1"
-  ctrl <- list(dictionary = c("three", "two"))
+  ctrl <- list(dictionary = c("three", "two", "zero"))
   ms <- TermDocumentMatrix(scorpus, ctrl)
   mv <- TermDocumentMatrix(vcorpus, ctrl)
-  m <- matrix(c(3, 2),
+  m <- matrix(c(3, 2, 0),
               dimnames = list("Terms" = ctrl$dictionary, "Docs" = docs))
   expect_equal(as.matrix(ms[order(Terms(ms)), ]), m)
   expect_equal(as.matrix(mv), m)
