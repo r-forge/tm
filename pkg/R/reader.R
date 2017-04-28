@@ -37,22 +37,35 @@ function(uri)
 
 # readDOC needs antiword installed to be able to extract the text
 readDOC <-
-function(AntiwordOptions = "")
+function(engine = c("antiword", "executable"),
+         AntiwordOptions = "")
 {
-    stopifnot(is.character(AntiwordOptions))
+    stopifnot(is.character(engine), is.character(AntiwordOptions))
+
+    engine <- match.arg(engine)
+
+    antiword <-
+        switch(engine,
+               antiword = antiword::antiword,
+               executable = function(x)
+                   system2("antiword",
+                           c(AntiwordOptions, shQuote(normalizePath(x))),
+                           stdout = TRUE))
+
+    if (!is.function(antiword))
+        stop("invalid function for DOC extraction")
 
     function(elem, language, id) {
         uri <- processURI(elem$uri)
-        content <- system2("antiword",
-                           c(AntiwordOptions, shQuote(normalizePath(uri))),
-                           stdout = TRUE)
+        content <- antiword(uri)
         PlainTextDocument(content, id = basename(elem$uri), language = language)
     }
 }
 class(readDOC) <- c("FunctionGenerator", "function")
 
 readPDF <-
-function(engine = c("xpdf", "Rpoppler", "ghostscript", "Rcampdf", "custom"),
+function(engine = c("pdftools", "xpdf", "Rpoppler",
+                    "ghostscript", "Rcampdf", "custom"),
          control = list(info = NULL, text = NULL))
 {
     stopifnot(is.character(engine), is.list(control))
@@ -61,6 +74,10 @@ function(engine = c("xpdf", "Rpoppler", "ghostscript", "Rcampdf", "custom"),
 
     pdf_info <-
         switch(engine,
+               pdftools = function(x) {
+                   i <- pdftools::pdf_info(x)
+                   c(i$keys, list(CreationDate = i$created))
+               },
                xpdf = function(x) pdf_info_via_xpdf(x, control$info),
                Rpoppler = Rpoppler::PDF_info,
                ghostscript = pdf_info_via_gs,
@@ -69,6 +86,7 @@ function(engine = c("xpdf", "Rpoppler", "ghostscript", "Rcampdf", "custom"),
 
     pdf_text <-
         switch(engine,
+               pdftools = pdftools::pdf_text,
                xpdf = function(x) system2("pdftotext",
                                           c(control$text, shQuote(x), "-"),
                                           stdout = TRUE),
@@ -85,7 +103,8 @@ function(engine = c("xpdf", "Rpoppler", "ghostscript", "Rcampdf", "custom"),
         meta <- pdf_info(uri)
         content <- pdf_text(uri)
         PlainTextDocument(content, meta$Author, meta$CreationDate, meta$Subject,
-                          meta$Title, basename(elem$uri), language, meta$Creator)
+                          meta$Title, basename(elem$uri), language,
+                          meta$Creator)
      }
 }
 class(readPDF) <- c("FunctionGenerator", "function")
