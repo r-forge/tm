@@ -5,6 +5,7 @@
 \alias{eoi}
 \alias{eoi.SimpleSource}
 \alias{getMeta}
+\alias{getMeta.DataframeSource}
 \alias{getElem}
 \alias{getElem.DataframeSource}
 \alias{getElem.DirSource}
