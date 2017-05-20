@@ -10,8 +10,8 @@ function(x)
 
 getReaders <-
 function()
-    c("readDOC", "readPDF", "readPlain", "readRCV1", "readRCV1asPlain",
-      "readReut21578XML", "readReut21578XMLasPlain", "readTabular",
+    c("readDataframe", "readDOC", "readPDF", "readPlain", "readRCV1",
+      "readRCV1asPlain", "readReut21578XML", "readReut21578XMLasPlain",
       "readTagged", "readXML")
 
 prepareReader <-
@@ -33,6 +33,13 @@ function(uri)
     if (identical(substr(uri, 1, 7), "file://"))
         uri <- substr(uri, 8, nchar(uri))
     uri
+}
+
+readDataframe <-
+function(elem, language, id) {
+    PlainTextDocument(elem$content[, "text"],
+                      id = elem$content[, "doc_id"],
+                      language = language)
 }
 
 # readDOC needs antiword installed to be able to extract the text
@@ -188,22 +195,6 @@ readReut21578XMLasPlain <-
 readXML(spec = c(Reut21578XMLSpec,
                  list(content = list("node", "/REUTERS/TEXT/BODY"))),
         doc = PlainTextDocument())
-
-readTabular <-
-function(mapping)
-{
-    stopifnot(is.list(mapping))
-    function(elem, language, id) {
-        meta <- lapply(mapping[setdiff(names(mapping), "content")],
-                       function(m) elem$content[, m])
-        if (is.null(meta$id))
-            meta$id <- as.character(id)
-        if (is.null(meta$language))
-            meta$language <- as.character(language)
-        PlainTextDocument(elem$content[, mapping$content], meta = meta)
-    }
-}
-class(readTabular) <- c("FunctionGenerator", "function")
 
 readTagged <-
 function(...)

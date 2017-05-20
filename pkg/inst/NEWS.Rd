@@ -2,6 +2,17 @@
 \title{News for Package 'tm'}
 \encoding{UTF-8}
 \section{Changes in tm version 0.7-2}{
+  \subsection{SIGNIFICANT USER-VISIBLE CHANGES}{
+    \itemize{
+      \item \code{DataframeSource} now only processes data frames with the two
+        mandatory columns \code{"doc_id"} and \code{"text"}. Additional columns
+        are used as document level metadata. This implements compatibility with
+        \emph{Text Interchange Formats} corpora
+        (\url{https://github.com/ropensci/tif}).
+      \item \code{readTabular()} has been removed. Use \code{DataframeSource}
+        instead.
+    }
+  }
   \subsection{BUG FIXES}{
     \itemize{
       \item Correctly handle the \code{dictionary} argument when constructing a

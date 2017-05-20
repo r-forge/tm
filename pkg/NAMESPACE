@@ -27,6 +27,7 @@ export("as.DocumentTermMatrix",
        "eoi",
        "FunctionGenerator",
        "getElem",
+       "getMeta",
        "Heaps_plot",
        "findAssocs",
        "findFreqTerms",
@@ -44,6 +45,7 @@ export("as.DocumentTermMatrix",
        "PlainTextDocument",
        "read_dtm_Blei_et_al",
        "read_dtm_MC",
+       "readDataframe",
        "readDOC",
        "reader",
        "readPlain",
@@ -52,7 +54,6 @@ export("as.DocumentTermMatrix",
        "readRCV1",
        "readRCV1asPlain",
        "readPDF",
-       "readTabular",
        "readTagged",
        "readXML",
        "removeNumbers",
@@ -101,6 +102,7 @@ S3method("words", "character")
 S3method("[", "DataframeSource")
 S3method("[[", "DataframeSource")
 S3method("getElem", "DataframeSource")
+S3method("getMeta", "DataframeSource")
 S3method("pGetElem", "DataframeSource")
 
 S3method("[", "DirSource")
