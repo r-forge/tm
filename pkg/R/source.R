@@ -32,7 +32,12 @@ function(encoding = "",
 # A data frame where each row is interpreted as document
 DataframeSource <-
 function(x)
-    SimpleSource(length = nrow(x), content = x, class = "DataframeSource")
+{
+    stopifnot(all(c("doc_id", "text") %in% names(x)))
+
+    SimpleSource(length = nrow(x), reader = readDataframe,
+                 content = x, class = "DataframeSource")
+}
 
 # A directory with files interpreted as documents
 DirSource <-
@@ -235,6 +240,14 @@ function(x)
        list(content = readContent(path, x$encoding, x$mode),
             uri = paste0("file://", path))
 }
+
+getMeta <-
+function(x)
+    UseMethod("getMeta", x)
+getMeta.DataframeSource <-
+function(x)
+    list(cmeta = NULL,
+         dmeta = x$content[, !names(x$content) %in% c("doc_id", "text")])
 
 
 length.SimpleSource <-
