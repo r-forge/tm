@@ -160,6 +160,7 @@ S3method("words", "PlainTextDocument")
 
 S3method("[", "SimpleCorpus")
 S3method("[[", "SimpleCorpus")
+S3method("[[<-", "SimpleCorpus")
 S3method("as.list", "SimpleCorpus")
 S3method("content", "SimpleCorpus")
 S3method("format", "SimpleCorpus")
