@@ -193,6 +193,12 @@ function(x, i)
     x$content[[i]]
 }
 
+`[[<-.SimpleCorpus` <-
+function(x, i, value)
+{
+    x$content[i] <- paste0(as.character(value), collapse = "\n")
+    x
+}
 `[[<-.PCorpus` <-
 function(x, i, value)
 {
