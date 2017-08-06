@@ -87,19 +87,29 @@ removeNumbers.PlainTextDocument <-
     content_transformer(removeNumbers.character)
 
 removePunctuation <-
-function(x, preserve_intra_word_dashes = FALSE)
+function(x,
+         preserve_intra_word_contractions = FALSE,
+         preserve_intra_word_dashes = FALSE)
     UseMethod("removePunctuation", x)
 removePunctuation.character <-
-function(x, preserve_intra_word_dashes = FALSE)
+function(x,
+         preserve_intra_word_contractions = FALSE,
+         preserve_intra_word_dashes = FALSE)
 {
-    if (!preserve_intra_word_dashes)
-        gsub("[[:punct:]]+", "", x)
-    else {
-        # Assume there are no ASCII 1 characters.
-        x <- gsub("(\\w)-(\\w)", "\\1\1\\2", x)
-        x <- gsub("[[:punct:]]+", "", x)
-        gsub("\1", "-", x, fixed = TRUE)
-    }
+    # Assume there are no ASCII 0x01 (SOH) or ASCII 0x02 (STX) characters.
+    if (preserve_intra_word_contractions)
+        x <- gsub("(\\w)'(\\w)", "\\1\1\\2", x)
+    if (preserve_intra_word_dashes)
+        x <- gsub("(\\w)-(\\w)", "\\1\2\\2", x)
+
+    x <- gsub("[[:punct:]]+", "", x)
+
+    if (preserve_intra_word_contractions)
+        x <- gsub("\1", "'", x, fixed = TRUE)
+    if (preserve_intra_word_dashes)
+        x <- gsub("\2", "-", x, fixed = TRUE)
+
+    x
 }
 removePunctuation.PlainTextDocument <-
     content_transformer(removePunctuation.character)
