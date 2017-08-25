@@ -288,7 +288,7 @@ function(doc, control = list())
     ## Stemming
     .stemming <- control$stemming
     if (isTRUE(.stemming))
-        .stemming <- function(x) stemDocument(x, .language)
+        .stemming <- function(x) SnowballC::wordStem(x, .language)
 
     ## Default order for options which support reordering
     or <- c("removePunctuation", "removeNumbers", "stopwords", "stemming")
