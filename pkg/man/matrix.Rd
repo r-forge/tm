@@ -26,8 +26,8 @@ as.DocumentTermMatrix(x, \dots)
 
     This is different for a \code{\link{SimpleCorpus}}. In this case all
     options are processed in a fixed order in one pass to improve performance.
-    It always uses the Boost Tokenizer (via \pkg{Rcpp}) and takes no custom
-    functions as option arguments.
+    It always uses the Boost (\url{http://www.boost.org}) Tokenizer (via
+    \pkg{Rcpp}) and takes no custom functions as option arguments.
 
     Available global options are:
     \describe{
