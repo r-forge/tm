@@ -240,6 +240,8 @@ function(doc, control = list())
     .tokenize <- control$tokenize
     if (is.null(.tokenize) || identical(.tokenize, "words"))
         .tokenize <- words
+    else if (identical(.tokenize, "Boost"))
+        .tokenize <- Boost_tokenizer
     else if (identical(.tokenize, "MC"))
         .tokenize <- MC_tokenizer
     else if (identical(.tokenize, "scan"))
