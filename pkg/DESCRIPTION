@@ -1,7 +1,7 @@
 Package: tm
 Title: Text Mining Package
 Version: 0.7-2
-Date: 2017-08-25
+Date: 2017-08-27
 Authors@R: c(person("Ingo", "Feinerer", role = c("aut", "cre"),
                     email = "feinerer@logic.at"),
              person("Kurt", "Hornik", role = "aut"),

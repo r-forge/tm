@@ -1,6 +1,10 @@
 getTokenizers <-
 function()
-    c("MC_tokenizer", "scan_tokenizer")
+    c("Boost_tokenizer", "MC_tokenizer", "scan_tokenizer")
+
+# http://www.boost.org
+Boost_tokenizer <-
+Token_Tokenizer(function(x) Boost_Tokenizer(as.character(x)))
 
 # http://www.cs.utexas.edu/users/dml/software/mc/
 MC_tokenizer <-
