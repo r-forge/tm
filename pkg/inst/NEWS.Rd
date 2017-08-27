@@ -13,6 +13,12 @@
         instead.
     }
   }
+  \subsection{NEW FEATURES}{
+    \itemize{
+      \item \code{Boost_tokenizer} provides a tokenizer based on the Boost
+        (\url{http://www.boost.org}) Tokenizer.
+    }
+  }
   \subsection{BUG FIXES}{
     \itemize{
       \item Correctly handle the \code{dictionary} argument when constructing a

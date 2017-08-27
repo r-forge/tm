@@ -20,6 +20,7 @@ termFreq(doc, control = list())
 	\code{\link[NLP]{Token_Tokenizer}}, or a string matching one of the
 	predefined tokenization functions:
 	\describe{
+	  \item{\code{"Boost"}}{for \code{\link{Boost_tokenizer}}, or}
 	  \item{\code{"MC"}}{for \code{\link{MC_tokenizer}}, or}
 	  \item{\code{"scan"}}{for \code{\link{scan_tokenizer}}, or}
 	  \item{\code{"words"}}{for \code{\link{words}}.}
