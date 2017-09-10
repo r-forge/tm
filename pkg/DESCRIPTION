@@ -1,7 +1,7 @@
 Package: tm
 Title: Text Mining Package
 Version: 0.7-2
-Date: 2017-08-27
+Date: 2017-09-10
 Authors@R: c(person("Ingo", "Feinerer", role = c("aut", "cre"),
                     email = "feinerer@logic.at"),
              person("Kurt", "Hornik", role = "aut"),
@@ -10,7 +10,7 @@ Authors@R: c(person("Ingo", "Feinerer", role = c("aut", "cre"),
 Depends: R (>= 3.2.0), NLP (>= 0.1-6.2)
 Imports: Rcpp, parallel, slam (>= 0.1-37), stats, tools, utils, graphics
 LinkingTo: BH, Rcpp
-Suggests: antiword, filehash, methods, pdftools, Rcampdf, Rgraphviz, Rpoppler, SnowballC, testthat, tm.lexicon.GeneralInquirer, XML
+Suggests: antiword, filehash, methods, pdftools, Rcampdf, Rgraphviz, Rpoppler, SnowballC, testthat, tm.lexicon.GeneralInquirer, xml2
 SystemRequirements: C++11
 Description: A framework for text mining applications within R.
 License: GPL-3
