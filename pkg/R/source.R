@@ -83,11 +83,10 @@ function(x)
     SimpleSource(length = length(x), content = x, class = "VectorSource")
 
 XMLSource <-
-function(x, parser, reader)
+function(x, parser = xml2::xml_contents, reader)
 {
-    tree <- XML::xmlParse(x)
-    content <- parser(tree)
-    XML::free(tree)
+    xmldoc <- xml2::read_xml(x)
+    content <- parser(xmldoc)
 
     SimpleSource(length = length(content), reader = reader, content = content,
                  uri = x, class = "XMLSource")
@@ -231,7 +230,7 @@ function(x)
          uri = NULL)
 getElem.XMLSource <-
 function(x)
-    list(content = XML::saveXML(x$content[[x$position]]),
+    list(content = x$content[[x$position]],
          uri = x$uri)
 getElem.ZipSource <-
 function(x)

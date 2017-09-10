@@ -40,5 +40,6 @@ as.VCorpus(x)
 }
 \examples{
 reut21578 <- system.file("texts", "crude", package = "tm")
-VCorpus(DirSource(reut21578), list(reader = readReut21578XMLasPlain))
+VCorpus(DirSource(reut21578, mode = "binary"),
+        list(reader = readReut21578XMLasPlain))
 }

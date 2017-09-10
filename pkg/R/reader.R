@@ -129,14 +129,16 @@ function(spec, doc)
     stopifnot(is.list(spec), inherits(doc, "TextDocument"))
 
     function(elem, language, id) {
-        tree <- XML::xmlParse(elem$content, asText = TRUE)
-        content(doc) <- if ("content" %in% names(spec))
-            .xml_content(tree, spec[["content"]])
+        node <- if (inherits(elem$content, "xml_node"))
+            elem$content
         else
-            XML::xmlTreeParse(elem$content, asText = TRUE)
+            xml2::read_xml(elem$content)
+        content(doc) <- if ("content" %in% names(spec))
+            .xml_content(node, spec[["content"]])
+        else
+            node
         for (n in setdiff(names(spec), "content"))
-            meta(doc, n) <- .xml_content(tree, spec[[n]])
-        XML::free(tree)
+            meta(doc, n) <- .xml_content(node, spec[[n]])
         if (!is.null(elem$uri))
             id <- basename(elem$uri)
         if (!length(meta(doc, "id")))
@@ -151,49 +153,49 @@ class(readXML) <- c("FunctionGenerator", "function")
 RCV1Spec <-
     list(author = list("unevaluated", ""),
          datetimestamp = list("function", function(node)
-           as.POSIXlt(as.character(XML::getNodeSet(node, "/newsitem/@date")),
+           as.POSIXlt(xml2::xml_text(
+                          xml2::xml_find_all(node, "@date")),
                       tz = "GMT")),
          description = list("unevaluated", ""),
-         heading = list("node", "/newsitem/title"),
-         id = list("attribute", "/newsitem/@itemid"),
+         heading = list("node", "title"),
+         id = list("node", "@itemid"),
          origin = list("unevaluated", "Reuters Corpus Volume 1"),
-         publisher = list("attribute",
-           "/newsitem/metadata/dc[@element='dc.publisher']/@value"),
-         topics = list("attribute",
-           "/newsitem/metadata/codes[@class='bip:topics:1.0']/code/@code"),
-         industries = list("attribute",
-           "/newsitem/metadata/codes[@class='bip:industries:1.0']/code/@code"),
-         countries = list("attribute",
-           "/newsitem/metadata/codes[@class='bip:countries:1.0']/code/@code"))
+         publisher = list("node",
+           "metadata/dc[@element='dc.publisher']/@value"),
+         topics = list("node",
+           "metadata/codes[@class='bip:topics:1.0']/code/@code"),
+         industries = list("node",
+           "metadata/codes[@class='bip:industries:1.0']/code/@code"),
+         countries = list("node",
+           "metadata/codes[@class='bip:countries:1.0']/code/@code"))
 readRCV1 <- readXML(spec = RCV1Spec, doc = XMLTextDocument())
 readRCV1asPlain <-
-readXML(spec = c(RCV1Spec, list(content = list("node", "/newsitem/text"))),
+readXML(spec = c(RCV1Spec, list(content = list("node", "text"))),
         doc = PlainTextDocument())
 
 Reut21578XMLSpec <-
-    list(author = list("node", "/REUTERS/TEXT/AUTHOR"),
+    list(author = list("node", "TEXT/AUTHOR"),
          datetimestamp = list("function", function(node)
-           strptime(sapply(XML::getNodeSet(node, "/REUTERS/DATE"),
-                           XML::xmlValue),
+           strptime(xml2::xml_text(xml2::xml_find_all(node, "DATE")),
                     format = "%d-%B-%Y %H:%M:%S",
                     tz = "GMT")),
          description = list("unevaluated", ""),
-         heading = list("node", "/REUTERS/TEXT/TITLE"),
-         id = list("attribute", "/REUTERS/@NEWID"),
-         topics = list("attribute", "/REUTERS/@TOPICS"),
-         lewissplit = list("attribute", "/REUTERS/@LEWISSPLIT"),
-         cgisplit = list("attribute", "/REUTERS/@CGISPLIT"),
-         oldid = list("attribute", "/REUTERS/@OLDID"),
+         heading = list("node", "TEXT/TITLE"),
+         id = list("node", "@NEWID"),
+         topics = list("node", "@TOPICS"),
+         lewissplit = list("node", "@LEWISSPLIT"),
+         cgisplit = list("node", "@CGISPLIT"),
+         oldid = list("node", "@OLDID"),
          origin = list("unevaluated", "Reuters-21578 XML"),
-         topics_cat = list("node", "/REUTERS/TOPICS/D"),
-         places = list("node", "/REUTERS/PLACES/D"),
-         people = list("node", "/REUTERS/PEOPLE/D"),
-         orgs = list("node", "/REUTERS/ORGS/D"),
-         exchanges = list("node", "/REUTERS/EXCHANGES/D"))
+         topics_cat = list("node", "TOPICS/D"),
+         places = list("node", "PLACES/D"),
+         people = list("node", "PEOPLE/D"),
+         orgs = list("node", "ORGS/D"),
+         exchanges = list("node", "EXCHANGES/D"))
 readReut21578XML <- readXML(spec = Reut21578XMLSpec, doc = XMLTextDocument())
 readReut21578XMLasPlain <-
 readXML(spec = c(Reut21578XMLSpec,
-                 list(content = list("node", "/REUTERS/TEXT/BODY"))),
+                 list(content = list("node", "TEXT/BODY"))),
         doc = PlainTextDocument())
 
 readTagged <-
