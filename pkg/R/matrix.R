@@ -306,7 +306,7 @@ function(doc, control = list())
 
     ## If dictionary is set tabulate against it
     dictionary <- control$dictionary
-    tab <- table(if (is.null(dictionary)) txt else txt[txt %in% dictionary])
+    tab <- .table(if (is.null(dictionary)) txt else txt[txt %in% dictionary])
 
     ## Ensure local bounds
     bl <- control$bounds$local
