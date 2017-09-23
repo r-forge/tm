@@ -78,31 +78,39 @@ function(FUN)
 }
 
 removeNumbers <-
-function(x)
-    UseMethod("removeNumbers", x)
+function(x, ...)
+    UseMethod("removeNumbers")
 removeNumbers.character <-
-function(x)
-    gsub("[[:digit:]]+", "", x)
+function(x, ucp = FALSE, ...)
+{
+    if(ucp)
+        gsub("\\p{Nd}+", "", x, perl = TRUE)
+    else
+        gsub("[[:digit:]]+", "", x, perl = TRUE)
+}
 removeNumbers.PlainTextDocument <-
     content_transformer(removeNumbers.character)
 
 removePunctuation <-
-function(x,
-         preserve_intra_word_contractions = FALSE,
-         preserve_intra_word_dashes = FALSE)
-    UseMethod("removePunctuation", x)
+function(x, ...)
+    UseMethod("removePunctuation")
 removePunctuation.character <-
 function(x,
          preserve_intra_word_contractions = FALSE,
-         preserve_intra_word_dashes = FALSE)
+         preserve_intra_word_dashes = FALSE,
+         ucp = FALSE,
+         ...)
 {
     # Assume there are no ASCII 0x01 (SOH) or ASCII 0x02 (STX) characters.
     if (preserve_intra_word_contractions)
-        x <- gsub("(\\w)'(\\w)", "\\1\1\\2", x)
+        x <- gsub("(\\w)'(\\w)", "\\1\1\\2", x, perl = TRUE)
     if (preserve_intra_word_dashes)
-        x <- gsub("(\\w)-(\\w)", "\\1\2\\2", x)
+        x <- gsub("(\\w)-(\\w)", "\\1\2\\2", x, perl = TRUE)
 
-    x <- gsub("[[:punct:]]+", "", x)
+    if(ucp)
+        x <- gsub("\\p{P}+", "", x, perl = TRUE)
+    else
+        x <- gsub("[[:punct:]]+", "", x, perl = TRUE)
 
     if (preserve_intra_word_contractions)
         x <- gsub("\1", "'", x, fixed = TRUE)
