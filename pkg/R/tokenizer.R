@@ -23,5 +23,4 @@ Token_Tokenizer(function(x)
 })
 
 scan_tokenizer <-
-Token_Tokenizer(function(x)
-    scan(text = as.character(x), what = "character", quote = "", quiet = TRUE))
+Token_Tokenizer(function(x) .Call(`_tm_scan`, x, 0L))
