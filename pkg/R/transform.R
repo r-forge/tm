@@ -86,7 +86,7 @@ function(x, ucp = FALSE, ...)
     if(ucp)
         gsub("\\p{Nd}+", "", x, perl = TRUE)
     else
-        gsub("[[:digit:]]+", "", x, perl = TRUE)
+        .Call(`_tm_remove_chars`, x, 1L)
 }
 removeNumbers.PlainTextDocument <-
     content_transformer(removeNumbers.character)
@@ -110,7 +110,7 @@ function(x,
     if(ucp)
         x <- gsub("\\p{P}+", "", x, perl = TRUE)
     else
-        x <- gsub("[[:punct:]]+", "", x, perl = TRUE)
+        x <- .Call(`_tm_remove_chars`, x, 0L)
 
     if (preserve_intra_word_contractions)
         x <- gsub("\1", "'", x, fixed = TRUE)
