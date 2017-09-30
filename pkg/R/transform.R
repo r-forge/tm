@@ -83,7 +83,7 @@ function(x, ...)
 removeNumbers.character <-
 function(x, ucp = FALSE, ...)
 {
-    if(ucp)
+    if (ucp)
         gsub("\\p{Nd}+", "", x, perl = TRUE)
     else
         .Call(`_tm_remove_chars`, x, 1L)
@@ -107,7 +107,7 @@ function(x,
     if (preserve_intra_word_dashes)
         x <- gsub("(\\w)-(\\w)", "\\1\2\\2", x, perl = TRUE)
 
-    if(ucp)
+    if (ucp)
         x <- gsub("\\p{P}+", "", x, perl = TRUE)
     else
         x <- .Call(`_tm_remove_chars`, x, 0L)

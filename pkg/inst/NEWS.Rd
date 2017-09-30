@@ -11,6 +11,10 @@
         (\url{https://github.com/ropensci/tif}).
       \item \code{readTabular()} has been removed. Use \code{DataframeSource}
         instead.
+      \item \code{removeNumbers()} and \code{removePunctuation()} now have an
+        argument \code{ucp} to check for Unicode general categories \code{Nd}
+        (decimal digits) and \code{P} (punctuation), respectively. Contributed
+        by Kurt Hornik.
     }
   }
   \subsection{NEW FEATURES}{

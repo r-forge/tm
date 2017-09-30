@@ -29,7 +29,7 @@ scan_tokenizer(x)
       Tokenizer (via \pkg{Rcpp}).}
     \item{MC_tokenizer}{Implements the functionality of the tokenizer in the
       MC toolkit (\url{http://www.cs.utexas.edu/users/dml/software/mc/}).}
-    \item{scan_tokenizer}{Relies on \code{scan(\dots, what = "character")}.}
+    \item{scan_tokenizer}{Simulates \code{scan(\dots, what = "character")}.}
   }
 }
 \seealso{
