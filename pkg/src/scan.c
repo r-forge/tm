@@ -46,7 +46,7 @@ SEXP _tm_scan(SEXP x, SEXP which) {
     while((c = *s++) != '\0') {
 	if(skip && !test(c)) {
 	    skip = FALSE; 
-	    if(nb > size) {
+	    if(nb >= size) {
 		if(size > INT_MAX / 2)
 		    error("too many items");
 		size *= 2;
