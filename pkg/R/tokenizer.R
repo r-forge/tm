@@ -4,7 +4,7 @@ function()
 
 # http://www.boost.org
 Boost_tokenizer <-
-Token_Tokenizer(function(x) Boost_Tokenizer(as.character(x)))
+Token_Tokenizer(function(x) enc2utf8(Boost_Tokenizer(as.character(x))))
 
 # http://www.cs.utexas.edu/users/dml/software/mc/
 MC_tokenizer <-
