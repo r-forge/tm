@@ -112,7 +112,7 @@ function(x, control = list())
              as.integer(min_term_freq), as.integer(max_term_freq),
              as.integer(min_word_length), as.integer(max_word_length))
 
-    m <- .SimpleTripletMatrix(m$i, m$j, m$v, m$terms, x)
+    m <- .SimpleTripletMatrix(m$i, m$j, m$v, enc2utf8(m$terms), x)
 
     ## Stemming
     ## <NOTE>
