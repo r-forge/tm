@@ -132,7 +132,7 @@ function(spec, doc)
         node <- if (inherits(elem$content, "xml_node"))
             elem$content
         else
-            xml2::read_xml(elem$content)
+            read_xml(elem$content)
         content(doc) <- if ("content" %in% names(spec))
             .xml_content(node, spec[["content"]])
         else
@@ -153,8 +153,7 @@ class(readXML) <- c("FunctionGenerator", "function")
 RCV1Spec <-
     list(author = list("unevaluated", ""),
          datetimestamp = list("function", function(node)
-           as.POSIXlt(xml2::xml_text(
-                          xml2::xml_find_all(node, "@date")),
+           as.POSIXlt(xml_text(xml_find_all(node, "@date")),
                       tz = "GMT")),
          description = list("unevaluated", ""),
          heading = list("node", "title"),
@@ -168,15 +167,18 @@ RCV1Spec <-
            "metadata/codes[@class='bip:industries:1.0']/code/@code"),
          countries = list("node",
            "metadata/codes[@class='bip:countries:1.0']/code/@code"))
-readRCV1 <- readXML(spec = RCV1Spec, doc = XMLTextDocument())
+readRCV1 <-
+    readXML(spec = RCV1Spec,
+            doc = XMLTextDocument())
 readRCV1asPlain <-
-readXML(spec = c(RCV1Spec, list(content = list("node", "text"))),
-        doc = PlainTextDocument())
+    readXML(spec = c(RCV1Spec,
+                     list(content = list("node", "text"))),
+            doc = PlainTextDocument())
 
 Reut21578XMLSpec <-
     list(author = list("node", "TEXT/AUTHOR"),
          datetimestamp = list("function", function(node)
-           strptime(xml2::xml_text(xml2::xml_find_all(node, "DATE")),
+           strptime(xml_text(xml_find_all(node, "DATE")),
                     format = "%d-%B-%Y %H:%M:%S",
                     tz = "GMT")),
          description = list("unevaluated", ""),
@@ -192,11 +194,13 @@ Reut21578XMLSpec <-
          people = list("node", "PEOPLE/D"),
          orgs = list("node", "ORGS/D"),
          exchanges = list("node", "EXCHANGES/D"))
-readReut21578XML <- readXML(spec = Reut21578XMLSpec, doc = XMLTextDocument())
+readReut21578XML <-
+    readXML(spec = Reut21578XMLSpec,
+            doc = XMLTextDocument())
 readReut21578XMLasPlain <-
-readXML(spec = c(Reut21578XMLSpec,
-                 list(content = list("node", "TEXT/BODY"))),
-        doc = PlainTextDocument())
+    readXML(spec = c(Reut21578XMLSpec,
+                     list(content = list("node", "TEXT/BODY"))),
+            doc = PlainTextDocument())
 
 readTagged <-
 function(...)

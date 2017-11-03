@@ -17,7 +17,7 @@ function(x, ...)
 
 .xml_content <- function(doc, spec) {
     switch(spec[[1]],
-           node = xml2::xml_text(xml2::xml_find_all(doc, spec[[2]])),
+           node = xml_text(xml_find_all(doc, spec[[2]])),
            "function" = spec[[2]](doc),
            unevaluated = spec[[2]])
 }

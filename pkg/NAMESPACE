@@ -8,10 +8,15 @@ importFrom("graphics", "abline", "plot")
 importFrom("parallel", "parLapply")
 importFrom("stats", "coef", "cor", "lm", "setNames")
 importFrom("utils", "download.file", "getS3method", "unzip")
-
 importFrom("slam", "as.simple_triplet_matrix", "col_sums",
            "crossapply_simple_triplet_matrix", "read_stm_MC", "rollup",
            "row_sums", "simple_triplet_matrix")
+importFrom("xml2",
+           "read_xml",
+           "xml_contents",
+           "xml_find_all",
+           "xml_missing",
+           "xml_text")
 
 export("as.DocumentTermMatrix",
        "as.TermDocumentMatrix",

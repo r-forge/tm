@@ -92,7 +92,7 @@ function(x, ...)
     scan_tokenizer(x)
 
 XMLTextDocument <-
-function(x = structure(list(), class = "xml_missing"), # xml2::xml_missing()
+function(x = xml_missing(),
          author = character(0),
          datetimestamp = as.POSIXlt(Sys.time(), tz = "GMT"),
          description = character(0),
@@ -113,7 +113,7 @@ function(x = structure(list(), class = "xml_missing"), # xml2::xml_missing()
 
 as.character.XMLTextDocument <-
 function(x, ...)
-    xml2::xml_text(content(x))
+    xml_text(content(x))
 
 content.XMLTextDocument <-
 function(x)

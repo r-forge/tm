@@ -83,9 +83,9 @@ function(x)
     SimpleSource(length = length(x), content = x, class = "VectorSource")
 
 XMLSource <-
-function(x, parser = xml2::xml_contents, reader)
+function(x, parser = xml_contents, reader)
 {
-    xmldoc <- xml2::read_xml(x)
+    xmldoc <- read_xml(x)
     content <- parser(xmldoc)
 
     SimpleSource(length = length(content), reader = reader, content = content,

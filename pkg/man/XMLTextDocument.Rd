@@ -5,7 +5,7 @@
   Create \acronym{XML} text documents.
 }
 \usage{
-XMLTextDocument(x = structure(list(), class = "xml_missing"),
+XMLTextDocument(x = xml_missing(),
                 author = character(0),
                 datetimestamp = as.POSIXlt(Sys.time(), tz = "GMT"),
                 description = character(0),
