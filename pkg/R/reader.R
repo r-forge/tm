@@ -129,10 +129,13 @@ function(spec, doc)
     stopifnot(is.list(spec), inherits(doc, "TextDocument"))
 
     function(elem, language, id) {
-        node <- if (inherits(elem$content, "xml_node"))
-            elem$content
+        content <- elem$content
+        node <- if(inherits(content, "xml_node"))
+            content
+        else if(is.character(content)) 
+            read_xml(paste(elem$content, collapse = "\n"))
         else
-            read_xml(elem$content)
+            read_xml(content)
         content(doc) <- if ("content" %in% names(spec))
             .xml_content(node, spec[["content"]])
         else
