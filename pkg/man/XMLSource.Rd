@@ -5,7 +5,7 @@
   Create an \acronym{XML} source.
 }
 \usage{
-XMLSource(x, parser = xml2::xml_contents, reader)
+XMLSource(x, parser = xml_contents, reader)
 }
 \arguments{
   \item{x}{a character giving a uniform resource identifier.}
