@@ -80,7 +80,9 @@ function(x, control = list(language = "en"))
         stop("unsupported source type")
 
     dmeta <- if (inherits(x, "DataframeSource"))
-        x$content[, !names(x$content) %in% c("doc_id", "text")]
+        x$content[, is.na(match(names(x$content),
+                                c("doc_id", "text"))),
+                  drop = FALSE]
     else
         data.frame(row.names = seq_along(x))
 

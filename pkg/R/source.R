@@ -33,7 +33,7 @@ function(encoding = "",
 DataframeSource <-
 function(x)
 {
-    stopifnot(all(c("doc_id", "text") %in% names(x)))
+    stopifnot(all(!is.na(match(c("doc_id", "text"), names(x)))))
 
     SimpleSource(length = nrow(x), reader = readDataframe,
                  content = x, class = "DataframeSource")
@@ -246,7 +246,9 @@ function(x)
 getMeta.DataframeSource <-
 function(x)
     list(cmeta = NULL,
-         dmeta = x$content[, !names(x$content) %in% c("doc_id", "text")])
+         dmeta = x$content[, is.na(match(names(x$content),
+                                         c("doc_id", "text"))),
+                           drop = FALSE])
 
 
 length.SimpleSource <-
