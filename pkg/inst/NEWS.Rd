@@ -15,6 +15,9 @@
         argument \code{ucp} to check for Unicode general categories \code{Nd}
         (decimal digits) and \code{P} (punctuation), respectively. Contributed
         by Kurt Hornik.
+      \item The package \pkg{xml2} is now imported for \acronym{XML}
+        functionality instead of the (\acronym{CRAN} maintainer orphaned)
+        package \pkg{XML}.
     }
   }
   \subsection{NEW FEATURES}{
