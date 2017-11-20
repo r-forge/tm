@@ -33,3 +33,16 @@ test_that("construction with control arguments works", {
   expect_equal(as.matrix(ms[order(Terms(ms)), ]), m)
   expect_equal(as.matrix(mv), m)
 })
+
+test_that("empty matrix works", {
+  vs <- VectorSource("one two three")
+  scorpus <- Corpus(vs)
+  vcorpus <- VCorpus(vs)
+  docs <- "1"
+  ctrl <- list(dictionary = "four")
+  ms <- TermDocumentMatrix(scorpus, ctrl)
+  mv <- TermDocumentMatrix(vcorpus, ctrl)
+  m <- matrix(0, dimnames = list("Terms" = ctrl$dictionary, "Docs" = docs))
+  expect_equal(as.matrix(ms), m)
+  expect_equal(as.matrix(mv), m)
+})
