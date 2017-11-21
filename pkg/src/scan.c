@@ -2,8 +2,8 @@
 #include <Rdefines.h>
 #include <ctype.h>
 
-int is_space_or_punct(int c) {
-    return(isspace(c) || ispunct(c));
+static int is_space_or_ascii_punct(int c) {
+    return(isspace(c) || (ispunct(c) && isascii(c)));
 }
 
 SEXP _tm_scan(SEXP x, SEXP which) {
@@ -21,7 +21,7 @@ SEXP _tm_scan(SEXP x, SEXP which) {
 	PROTECT(this = AS_INTEGER(which));
 	w = INTEGER(this)[0];
 	if(w == 1)
-	    test = is_space_or_punct;
+	    test = is_space_or_ascii_punct;
 	UNPROTECT(1);
     }
 
