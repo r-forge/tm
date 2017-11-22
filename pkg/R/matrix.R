@@ -317,7 +317,7 @@ function(doc, control = list())
         tab <- tab[(tab >= bl[1]) & (tab <= bl[2]), drop = FALSE]
 
     ## Filter out too short or too long terms
-    nc <- nchar(names(tab), type = "chars", keepNA = FALSE)
+    nc <- nchar(names(tab), type = "chars")
     wl <- control$wordLengths
     lb <- if (is.numeric(wl[1])) wl[1] else 3
     ub <- if (is.numeric(wl[2])) wl[2] else Inf

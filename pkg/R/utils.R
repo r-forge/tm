@@ -11,7 +11,8 @@ function(x, ...)
 .table <- function(x) {
     u <- sort(unique(x))
     v <- tabulate(match(x, u))
-    names(v) <- u
+    if (length(u))
+        names(v) <- u
     v
 }
 

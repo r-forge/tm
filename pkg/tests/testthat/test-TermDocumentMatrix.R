@@ -39,7 +39,7 @@ test_that("empty matrix works", {
   scorpus <- Corpus(vs)
   vcorpus <- VCorpus(vs)
   docs <- "1"
-  ctrl <- list(dictionary = "four")
+  ctrl <- list(dictionary = "four", wordLengths = c(1, Inf))
   ms <- TermDocumentMatrix(scorpus, ctrl)
   mv <- TermDocumentMatrix(vcorpus, ctrl)
   m <- matrix(0, dimnames = list("Terms" = ctrl$dictionary, "Docs" = docs))
