@@ -26,14 +26,11 @@ SEXP _tm_scan(SEXP x, SEXP which) {
     }
 
     if(LENGTH(x) < 1)
-	error("invalid '%s' argument", "x");
-
-    PROTECT(x = AS_CHARACTER(x));
+	return NEW_CHARACTER(0);
 
     this = STRING_ELT(x, 0);
     if(this == NA_STRING) {
-	UNPROTECT(1);
-	return NA_STRING;
+	return ScalarString(NA_STRING);
     }
 
     beg = Calloc(size, int);
@@ -85,7 +82,7 @@ SEXP _tm_scan(SEXP x, SEXP which) {
     Free(beg);
     Free(end);
 
-    UNPROTECT(2);
+    UNPROTECT(1);
 
     return y;
 }
