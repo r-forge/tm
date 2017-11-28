@@ -31,13 +31,5 @@ Token_Tokenizer(function(x)
 scan_tokenizer <-
 Token_Tokenizer(function(x)
 {
-    x <- as.character(x)
-    if(length(x) <= 1L) {
-        .Call(`_tm_scan`, x, 0L)
-    } else {
-        ## Ideally, we would do the unlist(lapply(......)) in the C
-        ## code.
-        unlist(lapply(x, function(e) .Call(`_tm_scan`, e, 0L)),
-               FALSE, FALSE)
-    }
+    .Call(`_tm_scan`, as.character(x), 0L)
 })
