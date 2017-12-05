@@ -2,6 +2,10 @@
 #include <Rdefines.h>
 #include <ctype.h>
 
+static int is_ascii_digit(int c) {
+    return(isdigit(c) && isascii(c));
+}
+
 static int is_ascii_punct(int c) {
     return(ispunct(c) && isascii(c));
 }
@@ -19,7 +23,7 @@ SEXP _tm_remove_chars(SEXP x, SEXP which) {
 	PROTECT(this = AS_INTEGER(which));
 	w = INTEGER(this)[0];
 	if(w == 1)
-	    test = isdigit;
+	    test = is_ascii_digit;
 	UNPROTECT(1);
     }
 
