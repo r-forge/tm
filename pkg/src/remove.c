@@ -60,6 +60,7 @@ SEXP _tm_remove_chars(SEXP x, SEXP which) {
 	*t = '\0';
 	SET_STRING_ELT(y, i, mkCharCE(p, e));
     }
+    setAttrib(y, R_NamesSymbol, getAttrib(x, R_NamesSymbol));
 
     UNPROTECT(2);
     return y;
