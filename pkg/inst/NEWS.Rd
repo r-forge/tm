@@ -4,6 +4,7 @@
 \section{Changes in tm version 0.7-4}{
   \subsection{BUG FIXES}{
     \itemize{
+      \item Keep document names in \code{tm_map.SimpleCorpus()}.
       \item Fix encoding problems in \code{scan_tokenizer()} and
         \code{Boost_tokenizer()}.
     }
