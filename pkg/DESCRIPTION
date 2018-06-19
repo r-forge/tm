@@ -1,7 +1,7 @@
 Package: tm
 Title: Text Mining Package
-Version: 0.7-3.2
-Date: 2018-06-18
+Version: 0.7-4
+Date: 2018-06-19
 Authors@R: c(person("Ingo", "Feinerer", role = c("aut", "cre"),
                     email = "feinerer@logic.at",
                     comment = c(ORCID = "0000-0001-7656-8338")),
@@ -17,4 +17,4 @@ SystemRequirements: C++11
 Description: A framework for text mining applications within R.
 License: GPL-3
 URL: http://tm.r-forge.r-project.org/
-Additional_repositories: http://datacube.wu.ac.at
+Additional_repositories: https://datacube.wu.ac.at
