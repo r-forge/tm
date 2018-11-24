@@ -24,10 +24,12 @@ List tdm(const StringVector strings,
 
     for (unsigned int index = 0; index < strings.size(); index++) {
         std::string s = std::string(strings(index));
-        boost::tokenizer<> tok(s);
+        typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
+        boost::char_separator<char> sep(" \f\n\r\t\v");
+        tokenizer tok(s, sep);
 
         line.clear();
-        for (boost::tokenizer<>::iterator it = tok.begin();
+        for (tokenizer::iterator it = tok.begin();
              it != tok.end();
              ++it) {
             std::string token = *it;
