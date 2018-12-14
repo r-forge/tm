@@ -107,6 +107,7 @@ function(x, control = list())
         min(wl[2], .Machine$integer.max) else .Machine$integer.max
 
     m <- tdm(txt,
+             isTRUE(control$removePunctuation),
              isTRUE(control$removeNumbers),
              .stopwords, .dictionary,
              as.integer(min_term_freq), as.integer(max_term_freq),
