@@ -1,12 +1,9 @@
 ## Adjust as necessary:
-dir <- "Data"
-
-nd <- 3e4
 nc <- 4
 
 require("tm")
 
-s <- readLines(file.path(dir, "sentences.txt"), n = nd)
+s <- readRDS("texts_sentences_30000.rds")
 C <- VCorpus(VectorSource(s))
 
 timings <- list()
