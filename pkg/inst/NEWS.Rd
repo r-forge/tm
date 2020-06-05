@@ -1,6 +1,16 @@
 \name{NEWS}
 \title{News for Package 'tm'}
 \encoding{UTF-8}
+\section{Changes in tm version 0.7-8}{
+  \subsection{BUG FIXES}{
+    \itemize{
+      \item \code{tm_index()} now interprets all non-\code{TRUE} logical values
+        returned by the filter function as \code{FALSE}. This fixes corner cases
+        where filter functions return \code{logical(0)} or \code{NA}. Reported
+        by Tom Nicholls.
+    }
+  }
+}
 \section{Changes in tm version 0.7-6}{
   \subsection{NEW FEATURES}{
     \itemize{
