@@ -1,7 +1,7 @@
 Package: tm
 Title: Text Mining Package
-Version: 0.7-7.2
-Date: 2020-06-08
+Version: 0.7-7.3
+Date: 2020-07-01
 Authors@R: c(person("Ingo", "Feinerer", role = c("aut", "cre"),
                     email = "feinerer@logic.at",
                     comment = c(ORCID = "0000-0001-7656-8338")),
