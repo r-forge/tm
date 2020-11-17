@@ -75,7 +75,7 @@
   \subsection{NEW FEATURES}{
     \itemize{
       \item \code{Boost_tokenizer} provides a tokenizer based on the Boost
-        (\url{http://www.boost.org}) Tokenizer.
+        (\url{https://www.boost.org}) Tokenizer.
     }
   }
   \subsection{BUG FIXES}{
