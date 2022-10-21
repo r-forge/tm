@@ -1,0 +1,15 @@
+citation(auto = meta)
+
+bibentry(bibtype = "Article",
+         title = "Text Mining Infrastructure in R",
+         author = {c(person("Ingo", "Feinerer", email = "feinerer@logic.at"),
+		     person("Kurt", "Hornik", email = "Kurt.Hornik@R-project.org"),
+		     person("David", "Meyer", email = "David.Meyer@wu.ac.at"))},
+         year = 2008,
+         journal = "Journal of Statistical Software",
+         volume = 25,
+         number = 5,
+	 pages = "1--54",
+         month = "March",
+	 doi = "10.18637/jss.v025.i05"
+	 )
