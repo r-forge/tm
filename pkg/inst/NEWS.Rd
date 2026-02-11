@@ -1,6 +1,13 @@
 \name{NEWS}
 \title{News for Package 'tm'}
 \encoding{UTF-8}
+\section{Changes in tm version 0.7-17}{
+  \subsection{BUG FIXES}{
+    \itemize{
+      \item Documentation improvements.
+    }
+  }
+}
 \section{Changes in tm version 0.7-16}{
   \subsection{BUG FIXES}{
     \itemize{
